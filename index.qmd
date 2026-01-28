@@ -1,0 +1,297 @@
+---
+title: "Structural Foundations of Health (Part 2)"
+subtitle: "January 28, 2026"
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+  beamer:
+    theme: Madrid
+    colortheme: seahorse
+    fonttheme: structurebold
+    aspectratio: 169
+---
+
+```{=html}
+<style>
+.highlight-box {
+  background-color: #ffffcc;
+  padding: 15px;
+  border-left: 4px solid teal;
+  margin: 10px 0;
+}
+</style>
+```
+
+------------------------------------------------------------------------
+
+## [**Today**]{style="color: teal;"}
+
+- Policy & health
+- Labor conditions
+- Community vs. population assessments
+- **Group exercise** (20 min)
+
+------------------------------------------------------------------------
+
+# [**7. Policy & Health**]{style="color: teal;"}
+
+------------------------------------------------------------------------
+
+## [**7. Policy Examples**]{style="color: teal;"}
+
+::: columns
+::: {.column width="50%"}
+**Policies that promote health:**
+
+- EITC (income support)
+- Medicaid expansion
+- Paid leave
+:::
+
+::: {.column width="50%"}
+**Policies that harm health:**
+
+- Mass incarceration
+- Restrictive zoning
+:::
+:::
+
+Policy decisions have measurable health consequences
+
+------------------------------------------------------------------------
+
+## [**7. Medicaid Expansion Impact**]{style="color: teal;"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 5
+
+library(ggplot2)
+
+medicaid_data <- data.frame(
+  state_type = rep(c("Expanded", "Did Not Expand"), 3),
+  outcome = rep(c("Uninsured (%)", "Mortality\n(per 100k)", 
+                  "Financial hardship (%)"), each = 2),
+  value = c(8, 16, 850, 920, 15, 25)
+)
+
+medicaid_data$outcome <- factor(medicaid_data$outcome,
+                                levels = c("Uninsured (%)", 
+                                          "Mortality\n(per 100k)",
+                                          "Financial hardship (%)"))
+
+ggplot(medicaid_data, aes(x = outcome, y = value, fill = state_type)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_text(aes(label = round(value, 0)), 
+            position = position_dodge(width = 0.7),
+            vjust = -0.5, size = 3.5, fontface = "bold") +
+  scale_fill_manual(values = c("Expanded" = "#2E7D32",
+                               "Did Not Expand" = "#C62828")) +
+  labs(
+    title = "Medicaid Expansion Impact (2014-2020)",
+    x = NULL,
+    y = "Value",
+    fill = NULL,
+    caption = "Sources: Sommers et al. (2017), Miller & Wherry (2019)"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", color = "#008080"),
+    legend.position = "top",
+    panel.grid.major.x = element_blank()
+  )
+```
+
+------------------------------------------------------------------------
+
+# [**8. Labor Conditions**]{style="color: teal;"}
+
+------------------------------------------------------------------------
+
+## [**8. Work Affects Health**]{style="color: teal;"}
+
+::: columns
+::: {.column width="33%"}
+**Physical hazards:**
+<span style="font-size:0.8em">
+
+-   Chemical exposures
+-   Repetitive strain
+-   Injury risk
+</span>
+![](heavyboxes.png){width="50%"}
+:::
+
+::: {.column width="33%"}
+**Psychosocial hazards:**
+
+<span style="font-size:0.8em">
+
+-   High demand + low control
+-   Effort-reward imbalance
+-   Job insecurity
+</span>
+![](mother.png){width="50%"}
+:::
+
+::: {.column width="33%"}
+**Environmental exposures:**
+<span style="font-size:0.8em">
+
+-   Pesticides
+-   Toxic chemicals
+-   Heat stress
+</span>
+![](spray.png){width="50%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## [**8. Gig Economy**]{style="color: teal;"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 6
+
+library(ggplot2)
+library(tidyr)
+
+gig_comparison <- data.frame(
+  benefit = c("Health insurance", "Paid sick leave", "Retirement", 
+              "Workers' comp", "Unemployment", "Predictable schedule"),
+  traditional = c(85, 75, 65, 100, 100, 80),
+  gig = c(15, 5, 10, 0, 0, 20)
+)
+
+gig_long <- gig_comparison %>%
+  pivot_longer(cols = c(traditional, gig), 
+               names_to = "type", 
+               values_to = "pct")
+
+gig_long$benefit <- factor(gig_long$benefit, 
+                           levels = rev(c("Health insurance", "Paid sick leave", 
+                                         "Retirement", "Workers' comp",
+                                         "Unemployment", "Predictable schedule")))
+
+ggplot(gig_long, aes(x = pct, y = benefit, fill = type)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_text(aes(label = paste0(pct, "%")), 
+            position = position_dodge(width = 0.7),
+            hjust = -0.2, size = 3.5) +
+  scale_fill_manual(
+    values = c("traditional" = "#2E7D32", "gig" = "#C62828"),
+    labels = c("Gig/Contract", "Traditional")
+  ) +
+  labs(
+    title = "Traditional vs. Gig Economy Benefits",
+    x = "Percentage (%)",
+    y = NULL,
+    fill = NULL,
+    caption = "Source: Pew Research Center (2021), BLS"
+  ) +
+  scale_x_continuous(limits = c(0, 110)) +
+  theme_minimal(base_size = 10) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", color = "#008080"),
+    legend.position = "top",
+    panel.grid.major.y = element_blank()
+  )
+```
+
+Precarious work = precarious health
+
+------------------------------------------------------------------------
+
+# [**9. Community vs. Population Assessments**]{style="color: teal;"}
+
+------------------------------------------------------------------------
+
+## [**9. Two Approaches**]{style="color: teal;"}
+
+::: columns
+::: {.column width="50%"}
+**Community Assessment**
+
+- Specific neighborhood
+- Involves residents
+- Assets + needs
+- Action plan
+
+**Example:** South Side Chicago food deserts
+:::
+
+::: {.column width="50%"}
+**Population Assessment**
+
+- Larger area
+- Administrative data
+- Disease patterns
+- Surveillance
+
+**Example:** CDC state diabetes rates
+:::
+:::
+
+Both answer different questions
+
+------------------------------------------------------------------------
+
+# [**Group Exercise**]{style="color: teal;"}
+
+------------------------------------------------------------------------
+
+## [**Community Analysis (20 min)**]{style="color: teal;"}
+
+**Your task:**
+
+1. Analyze your community scenario  
+2. Identify top 3 structural determinants  
+3. Recommend 1 intervention  
+4. Present in 2 minutes
+
+---
+
+## [**Community Analysis (20 min)**]{style="color: teal;"}
+
+**Groups:**
+
+- **Group Gupta:** Rural coal town  
+- **Group Wakefield:** Urban food desert  
+- **Group Pasteur:** Immigrant community  
+- **Group Nightingale:** Native reservation  
+- **Group Fauci:** Gentrifying neighborhood
+
+------------------------------------------------------------------------
+
+## [**Analysis Framework**]{style="color: teal;"}
+
+Consider:
+
+- **Social:** Capital, discrimination
+- **Economic:** Income, jobs
+- **Environmental:** Built environment, hazards
+- **Policy:** Housing, labor, healthcare
+
+**Be specific!** Use scenario details
+
+------------------------------------------------------------------------
+
+# [**Next Class**]{style="color: teal;"}
+
+**Monday:** Quiz + Measuring population health
+
+------------------------------------------------------------------------
+
+# [**Thank you!**]{style="color: teal;"}
+
+**Now: Break into groups**
