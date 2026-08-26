@@ -1,6 +1,5 @@
 ---
 title: "Structural Foundations of Health (Part 2)"
-subtitle: "January 28, 2026"
 format:
   revealjs:
     theme: default
@@ -261,15 +260,15 @@ Both answer different questions
 
 ---
 
-## [**Community Analysis (20 min)**]{style="color: teal;"}
+## [**Community Analysis (10-20 min)**]{style="color: teal;"}
 
 **Groups:**
 
-- **Group Gupta:** Rural coal town  
-- **Group Wakefield:** Urban food desert  
-- **Group Pasteur:** Immigrant community  
-- **Group Nightingale:** Native reservation  
-- **Group Fauci:** Gentrifying neighborhood
+- Rural coal town  
+- Urban food desert  
+- Immigrant community  
+- Native reservation  
+- Gentrifying neighborhood
 
 ------------------------------------------------------------------------
 
@@ -283,12 +282,6 @@ Consider:
 - **Policy:** Housing, labor, healthcare
 
 **Be specific!** Use scenario details
-
-------------------------------------------------------------------------
-
-# [**Next Class**]{style="color: teal;"}
-
-**Monday:** Quiz + Measuring population health
 
 ------------------------------------------------------------------------
 
