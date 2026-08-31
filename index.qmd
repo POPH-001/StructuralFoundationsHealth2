@@ -5,7 +5,41 @@ format:
   revealjs:
     theme: default
     slide-number: true
+    incremental: false
+  pdf:
+    papersize: letter
+    geometry:
+      - margin=1in
+    toc: false
+    colorlinks: true
+    code-overflow: wrap
+prefer-html: true
+# Figures for print. This R build has no cairo (no XQuartz installed), so the
+# svg device cannot open -- use high-resolution raster instead, which prints
+# cleanly at 4-up. For true vector output: install.packages("svglite"), then
+# uncomment the knitr block below.
+fig-dpi: 300
+# knitr:
+#   opts_chunk:
+#     dev: svglite
 ---
+
+```{r}
+#| include: false
+# shared look for every chart in this deck; also the print-safe palette
+library(ggplot2)
+
+theme_set(theme_minimal(base_size = 17))
+theme_update(
+  plot.title       = element_text(face = "bold", colour = "#008080", size = rel(1.0)),
+  plot.caption     = element_text(size = rel(0.62), colour = "grey35"),
+  legend.position  = "top",
+  panel.grid.minor = element_blank()
+)
+
+# dark vs light, not red vs green: survives a black-and-white printer
+PAL <- c(low = "#7F1D1D", high = "#8FBF92")
+```
 
 ```{=html}
 <style>
@@ -197,15 +231,13 @@ The middle one is the surprise: **high demand + low control** predicts heart dis
 
 ## [**Who actually gets benefits**]{style="color: teal;"}
 
-```{r}
+```{r benefits-by-wage}
 #| echo: false
 #| warning: false
 #| message: false
 #| fig-align: center
-#| fig-width: 10
+#| fig-width: 8.5
 #| fig-height: 4.2
-
-library(ggplot2)
 
 bens <- data.frame(
   benefit = rep(c("Paid sick leave", "Health insurance", "Retirement plan"), 2),
@@ -221,17 +253,14 @@ ggplot(bens, aes(benefit, pct, fill = earners)) +
   geom_col(position = position_dodge(width = 0.7), width = 0.65) +
   geom_text(aes(label = paste0(pct, "%")),
             position = position_dodge(width = 0.7),
-            vjust = -0.4, size = 4.5, fontface = "bold") +
-  scale_fill_manual(values = c("Lowest-paid 10%" = "#C62828",
-                               "Highest-paid 10%" = "#2E7D32")) +
+            vjust = -0.4, size = 5, fontface = "bold") +
+  scale_fill_manual(values = c("Lowest-paid 10%"  = unname(PAL["low"]),
+                               "Highest-paid 10%" = unname(PAL["high"]))) +
   scale_y_continuous(limits = c(0, 108), breaks = seq(0, 100, 25)) +
   labs(x = NULL, y = "% of workers with access", fill = NULL,
        title = "Access to benefits, US private industry, March 2025",
        caption = "BLS, Employee Benefits in the United States, March 2025 (USDL-25-1464)") +
-  theme_minimal(base_size = 14) +
-  theme(plot.title = element_text(face = "bold", colour = "#008080", size = 15),
-        legend.position = "top",
-        panel.grid.major.x = element_blank())
+  theme(panel.grid.major.x = element_blank())
 ```
 
 ::: {.notes}
@@ -376,15 +405,13 @@ Miller, Johnson & Wherry (2021), Quarterly Journal of Economics. Be precise abou
 
 ## [**And the rest of the picture**]{style="color: teal;"}
 
-```{r}
+```{r uninsured-by-expansion}
 #| echo: false
 #| warning: false
 #| message: false
 #| fig-align: center
-#| fig-width: 8
+#| fig-width: 7
 #| fig-height: 3.8
-
-library(ggplot2)
 
 unins <- data.frame(
   st = factor(c("Expansion states", "Non-expansion states"),
@@ -395,16 +422,14 @@ unins <- data.frame(
 ggplot(unins, aes(st, pct, fill = st)) +
   geom_col(width = 0.55) +
   geom_text(aes(label = paste0(pct, "%")), vjust = -0.4,
-            size = 6, fontface = "bold") +
-  scale_fill_manual(values = c("Expansion states" = "#2E7D32",
-                               "Non-expansion states" = "#C62828")) +
+            size = 6.5, fontface = "bold") +
+  scale_fill_manual(values = c("Expansion states"     = unname(PAL["high"]),
+                               "Non-expansion states" = unname(PAL["low"]))) +
   scale_y_continuous(limits = c(0, 17)) +
   labs(x = NULL, y = "Uninsured, ages 0-64 (%)",
        title = "Uninsured rate, 2024",
        caption = "KFF analysis of American Community Survey data, 2024") +
-  theme_minimal(base_size = 15) +
-  theme(plot.title = element_text(face = "bold", colour = "#008080", size = 16),
-        legend.position = "none",
+  theme(legend.position = "none",
         panel.grid.major.x = element_blank())
 ```
 
