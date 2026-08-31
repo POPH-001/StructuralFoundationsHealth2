@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.8.26)  31 AUG 2026 16:08
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.8.26)  31 AUG 2026 16:19
  restricted system commands enabled.
 **index.tex
 (./index.tex
@@ -968,26 +968,56 @@ Package hyperref Info: Link coloring ON on input line 175.
 
 
 {/Users/delmelle/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<lead-paint-photo.jpg, id=20, 1606.0pt x 1271.75125pt>
+File: lead-paint-photo.jpg Graphic file (type jpg)
+<use lead-paint-photo.jpg>
+Package luatex.def Info: lead-paint-photo.jpg  used on input line 245.
+(luatex.def)             Requested size: 225.47562pt x 178.5485pt.
+[2<./lead-paint-photo.jpg>]
+<heavyboxes.png, id=28, 1027.84pt x 1541.76pt>
+File: heavyboxes.png Graphic file (type png)
+<use heavyboxes.png>
+Package luatex.def Info: heavyboxes.png  used on input line 299.
+(luatex.def)             Requested size: 291.24362pt x 436.86543pt.
+[3]
+<mother.png, id=36, 1027.84pt x 1027.84pt>
+File: mother.png Graphic file (type png)
+<use mother.png>
+Package luatex.def Info: mother.png  used on input line 305.
+(luatex.def)             Requested size: 291.24362pt x 291.24362pt.
+[4<./heavyboxes.png>]
+<spray.png, id=41, 1027.84pt x 1541.76pt>
+File: spray.png Graphic file (type png)
+<use spray.png>
+Package luatex.def Info: spray.png  used on input line 311.
+(luatex.def)             Requested size: 291.24362pt x 436.86543pt.
+[5<./mother.png>]
+<index_files/figure-pdf/benefits-by-wage-1.pdf, id=46, 614.295pt x 303.1325pt>
+File: index_files/figure-pdf/benefits-by-wage-1.pdf Graphic file (type pdf)
+<use index_files/figure-pdf/benefits-by-wage-1.pdf>
+Package luatex.def Info: index_files/figure-pdf/benefits-by-wage-1.pdf  used on input line 323.
+(luatex.def)             Requested size: 614.29349pt x 303.13176pt.
+[6<./spray.png>] [7<./index_files/figure-pdf/benefits-by-wage-1.pdf>]
 
-LaTeX Warning: File `lead-paint-photo.jpg' not found on input line 245.
+LaTeX Warning: File `built-environment.png' not found on input line 388.
 
 
-! Package luatex.def Error: File `lead-paint-photo.jpg' not found: using draft setting.
+! Package luatex.def Error: File `built-environment.png' not found: using draft setting.
 
 See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.245 ...ight,keepaspectratio]{lead-paint-photo.jpg}
+l.388 ...ght,keepaspectratio]{built-environment.png}
                                                   
 
 Here is how much of LuaTeX's memory you used:
- 22880 strings out of 475635
+ 22950 strings out of 475635
  100000,1373583 words of node,token memory allocated
- 5814 words of node memory still in use:
-   32 hlist, 1 vlist, 3 rule, 16 disc, 9 local_par, 1 dir, 170 glue, 40 kern, 29 penalty, 410 glyph, 90 attribute, 76 glue_spec, 90 attribute_list, 1 temp, 7 if_stack, 4 write, 2 pdf_dest, 14 pdf_colorstack nodes
-   avail lists: 1:4,2:301,3:283,4:95,5:215,6:53,7:2105,9:219,10:8,11:110
- 45422 multiletter control sequences out of 65536+600000
- 44 fonts using 11570423 bytes
- 108i,7n,114p,11226b,422s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 6426 words of node memory still in use:
+   34 hlist, 1 vlist, 4 rule, 42 disc, 9 local_par, 1 dir, 156 glue, 54 kern, 35 penalty, 453 glyph, 92 attribute, 76 glue_spec, 92 attribute_list, 1 temp, 7 if_stack, 4 write, 2 pdf_dest, 14 pdf_colorstack nodes
+   avail lists: 1:4,2:297,3:277,4:95,5:202,6:53,7:2123,9:216,10:8,11:97
+ 45466 multiletter control sequences out of 65536+600000
+ 44 fonts using 11570503 bytes
+ 108i,8n,114p,11226b,435s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!
