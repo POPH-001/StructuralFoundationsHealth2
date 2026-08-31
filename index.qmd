@@ -149,7 +149,7 @@ Students default to "bad housing = mould". Push them to the second and third, wh
 
 ## [**One concrete case: lead**]{style="color: pink;"}
 
-![](lead-paint-photo.jpg){fig-align="center" width="48%"}
+![](lead-paint-photo.jpg){fig-align="center" width="38%"}
 
 Lead paint was legal in US homes until **1978** --- and is still in those walls.
 
@@ -203,7 +203,7 @@ Two people both "employed" can have completely different health prospects.
 
 <span style="font-size:0.78em">Lifting, repetition, chemicals, heat</span>
 
-![](heavyboxes.png){width="62%"}
+![](heavyboxes.png){width="50%"}
 :::
 
 ::: {.column width="33%"}
@@ -211,7 +211,7 @@ Two people both "employed" can have completely different health prospects.
 
 <span style="font-size:0.78em">High demand, low control, unpredictable hours</span>
 
-![](mother.png){width="62%"}
+![](mother.png){width="50%"}
 :::
 
 ::: {.column width="33%"}
@@ -219,7 +219,7 @@ Two people both "employed" can have completely different health prospects.
 
 <span style="font-size:0.78em">Pesticides, solvents, dust on your clothes</span>
 
-![](spray.png){width="62%"}
+![](spray.png){width="50%"}
 :::
 :::
 
@@ -313,7 +313,7 @@ Source: BLS Contingent and Alternative Employment Arrangements, July 2023 (relea
 
 ## [**What is built around you**]{style="color: teal;"}
 
-![](built-environment.png){fig-align="center" width="68%"}
+![](built-environment.png){fig-align="center" width="55%"}
 
 ::: {.notes}
 Ask what they can see: sidewalks, crossings, lighting, shade, benches, whether the shop is walkable. The point is that "exercise" is a design outcome, not only a willpower outcome.
