@@ -176,6 +176,33 @@
 .term { color: teal; font-weight: bold; }
 .tight ul { font-size: 92%; }
 .reveal figcaption { font-size: 70%; }
+
+/* photo credit: small, grey, right-aligned under an image */
+.credit {
+  font-size: 55%;
+  color: grey;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* --- demand-control 2x2 (Karasek) --- */
+.dc-wrap { display: grid; grid-template-columns: 1.1em 1fr; gap: 6px; margin: 6px 0; }
+.dc-ylab {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  text-align: center; font-size: 0.62em; color: #555; align-self: center;
+}
+.dc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dc-cell { padding: 8px 10px; border: 2px solid #ccc; border-radius: 3px; }
+.dc-cell p { margin: 0 0 2px 0; }
+.dc-cell strong { font-size: 0.92em; }
+.dc-sub  { font-style: italic; font-size: 0.6em; color: #666; }
+.dc-note { font-size: 0.66em; line-height: 1.25; color: #444; }
+/* the one that matters: dark fill, so it also reads in greyscale */
+.dc-strain { background: #7F1D1D; border-color: #7F1D1D; color: #fff; }
+.dc-strain .dc-sub, .dc-strain .dc-note { color: #f0dede; }
+.dc-easy   { background: #8FBF92; border-color: #8FBF92; }
+.dc-mid    { background: #f4f4f4; }
+.dc-xlab { text-align: center; font-size: 0.62em; color: #555; margin-top: 2px; }
 </style>
 </section>
 <section id="last-class-in-one-slide" class="slide level2">
@@ -198,10 +225,9 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="today" class="slide level2">
-<h2><span style="color: teal;"><strong>Today</strong></span></h2>
+<section id="this-lecture" class="slide level2">
+<h2><span style="color: teal;"><strong>This lecture</strong></span></h2>
 <p>Advantage is distributed unevenly, and the distribution has a history.</p>
-<p><strong>Today: where you actually feel it.</strong></p>
 <div class="columns">
 <div class="column" style="width:25%;">
 <h3 id="home">Home</h3>
@@ -212,7 +238,7 @@
 </div><div class="column" style="width:25%;">
 <h3 id="policy">Policy</h3>
 </div></div>
-<p>Then: <strong>how you would study a real community</strong> — and a group exercise doing it.</p>
+<p>H<strong>ow you would study a real community</strong>?</p>
 </section>
 <section class="slide level2">
 
@@ -232,44 +258,35 @@
 <div class="takeaway">
 <p>Only the first is about the building. The other two are <strong>money</strong> and <strong>stability</strong>.</p>
 </div>
-<aside class="notes">
-<p>Students default to “bad housing = mould”. Push them to the second and third, which do more damage and are less visible.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="one-concrete-case-lead" class="slide level2">
 <h2><span style="color: pink;"><strong>One concrete case: lead</strong></span></h2>
 
 <img data-src="lead-paint-photo.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:38.0%"><p>Lead paint was legal in US homes until <strong>1978</strong> — and is still in those walls.</p>
 <p>Old housing is concentrated in poor neighbourhoods. Lead damages the developing brain, and <strong>the damage does not reverse</strong>.</p>
-<aside class="notes">
-<p>The cleanest single illustration of the whole course: a 1978 regulation, a 2026 child, and a mechanism you can draw on the board.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</section>
+<section id="where-the-lead-actually-is" class="slide level2">
+<h2><span style="color: pink;"><strong>Where the lead actually is</strong></span></h2>
+
+<img data-src="index_files/figure-revealjs/lead-by-year-built-1.png" class="quarto-figure quarto-figure-center r-stretch" width="2400"><div class="takeaway">
+<p>Old housing is not scattered at random. <strong>It is where the D grades were.</strong></p>
+</div>
 </section>
 <section id="and-the-cost-side" class="slide level2">
 <h2><span style="color: teal;"><strong>And the cost side</strong></span></h2>
 <div class="highlight-box">
 <p>Paying more than <strong>30%</strong> of income on rent = <strong>cost-burdened</strong>. Above 50% = <strong>severely</strong> cost-burdened.</p>
 </div>
+</section>
+<section id="who-pays-too-much" class="slide level2">
+<h2><span style="color: teal;"><strong>Who pays too much</strong></span></h2>
+
+<img data-src="index_files/figure-revealjs/cost-burden-gradient-1.png" class="quarto-figure quarto-figure-center r-stretch" width="2400"><div class="takeaway">
+<p><strong>The staircase again — this time in rent.</strong> Not a cliff at the poverty line.</p>
+</div>
+</section>
+<section id="so-what-gives" class="slide level2">
+<h2><span style="color: teal;"><strong>So what gives?</strong></span></h2>
 <div class="ask">
 <p><strong>Quick one:</strong> rent goes up $200 a month, income doesn’t. What comes out of the budget first?</p>
 <p>Name three things. Which of them are health?</p>
@@ -323,6 +340,55 @@
 <div class="takeaway">
 <p>The middle one is the surprise: <strong>high demand + low control</strong> predicts heart disease. Being busy is not the problem. Being busy with no say is.</p>
 </div>
+</section>
+<section id="the-middle-one-drawn" class="slide level2">
+<h2><span style="color: teal;"><strong>The middle one, drawn</strong></span></h2>
+<div class="dc-wrap">
+<div class="dc-ylab">
+<p>← low control &nbsp;&nbsp; high control →</p>
+</div>
+<div class="dc-grid">
+<div class="dc-cell dc-mid">
+<p><strong>Passive</strong></p>
+<p><span class="dc-sub">Low demand, low control</span></p>
+<p><span class="dc-note">Night watch, some clerical work. Skills erode; disengagement.</span></p>
+</div>
+<div class="dc-cell dc-easy">
+<p><strong>Low strain</strong></p>
+<p><span class="dc-sub">Low demand, high control</span></p>
+<p><span class="dc-note">Self-paced, autonomous. The healthiest quadrant.</span></p>
+</div>
+<div class="dc-cell dc-strain">
+<p><strong>High strain</strong></p>
+<p><span class="dc-sub">High demand, low control</span></p>
+<p><span class="dc-note">Line work, call centre, care aide, warehouse pick rates. Highest cardiovascular risk.</span></p>
+</div>
+<div class="dc-cell dc-mid">
+<p><strong>Active</strong></p>
+<p><span class="dc-sub">High demand, high control</span></p>
+<p><span class="dc-note">Surgeon, senior manager. Demanding — but not, on its own, damaging.</span></p>
+</div>
+</div>
+</div>
+<div class="dc-xlab">
+<p>← low demand &nbsp;&nbsp;&nbsp;&nbsp; high demand →</p>
+</div>
+<div class="takeaway">
+<p>Two people can work equally hard. Only one of them has a say in how.</p>
+</div>
+<aside class="notes">
+<p>Karasek’s demand-control model (1979). The quadrant students always want to argue about is Active: yes, the surgeon’s job is brutal, and no, it does not carry the same risk, because the surgeon decides the order of the day. Ask them which quadrant the jobs they have actually held fall into — it is usually the dark one, and that lands better than any statistic.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="who-actually-gets-benefits" class="slide level2">
 <h2><span style="color: teal;"><strong>Who actually gets benefits</strong></span></h2>
@@ -451,6 +517,125 @@
 <p>This is the redlining map again, wearing a different coat.</p>
 </div>
 </section>
+<section id="and-what-happens-on-the-street" class="slide level2">
+<h2><span style="color: pink;"><strong>And what happens on the street</strong></span></h2>
+
+<img data-src="street-markers.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:76.0%"><div class="credit">
+<p>Photo: Associated Press</p>
+</div>
+<aside class="notes">
+<p>SAY SOMETHING BEFORE THIS SLIDE. One sentence is enough: “The next few slides are about firearm injury. Some of you will have lost someone. Step out if you need to.” Then move at a normal pace – do not linger on the image, and do not editorialise over it. The photo is here to be counted, not felt.</p>
+<p>Every yellow marker is a piece of evidence. Do not name the city; the point is not this street.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-wrong-question-one-more-time" class="slide level2">
+<h2><span style="color: teal;"><strong>The wrong question, one more time</strong></span></h2>
+<div class="highlight-box">
+<p>Wrong question: <strong>what is wrong with the people on that street?</strong></p>
+<p>Right question: <strong>why that street?</strong></p>
+</div>
+<p>Firearm injury is a leading cause of death for US children and adolescents. It is also, like everything else in this lecture, <strong>unevenly distributed</strong> — and the unevenness is very fine-grained.</p>
+<aside class="notes">
+<p>Deliberate echo of the Work section’s “wrong question / right question” slide. Students should recognise the move.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-fine-grained" class="slide level2">
+<h2><span style="color: teal;"><strong>How fine-grained</strong></span></h2>
+<div class="bignum">
+<p>under 5%</p>
+</div>
+<p>Of street segments and intersections in one large US city accounted for the <strong>majority of its gun violence</strong> — across 29 years.</p>
+<div class="takeaway">
+<p>A problem that concentrates on 5% of streets, and <em>stays</em> on those streets for three decades, is a problem about <strong>streets</strong>.</p>
+</div>
+<aside class="notes">
+<p>Braga, Papachristos &amp; Hureau (2010), Boston, 1980-2008. The stability is the surprising part, not the concentration – the same corners, decade after decade, through a citywide crime drop. That persistence is what makes it look structural rather than incidental. Do not let this slide become a policing conversation; the next slide is the reason.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="somebody-tested-that" class="slide level2">
+<h2><span style="color: teal;"><strong>Somebody tested that</strong></span></h2>
+<p>A US city had thousands of blighted vacant lots. Researchers took <strong>541</strong> of them, grouped them into 110 clusters, and <strong>randomly assigned</strong> each cluster to:</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Greened</strong></p>
+<p><span style="font-size:0.75em">Trash cleared, graded, grass and trees planted, low fence</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Cleaned only</strong></p>
+<p><span style="font-size:0.75em">Mowed, trash removed, nothing planted</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Nothing</strong></p>
+<p><span style="font-size:0.75em">Left as they were</span></p>
+</div></div>
+<p>Then they counted police-recorded shootings around each lot for two years.</p>
+<aside class="notes">
+<p>Flag the design out loud: this is a randomised controlled trial of a <em>place</em>, not of a drug and not of a person. Students have never seen one. It matters for the next section – this is what a population-scale answer looks like when somebody actually ran it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-grass-did" class="slide level2">
+<h2><span style="color: teal;"><strong>What grass did</strong></span></h2>
+<div class="bignum">
+<p>−29%</p>
+</div>
+<p>Gun violence around the treated lots, in neighbourhoods <strong>below the poverty line</strong>.</p>
+<p>Nearby residents also reported feeling less depressed — by more than <strong>68%</strong> in those same neighbourhoods.</p>
+<div class="takeaway">
+<p>The intervention was grass, a fence, and a mower. <strong>No policing. No programme. Nobody’s behaviour was corrected.</strong></p>
+</div>
+<aside class="notes">
+<p>Branas et al.&nbsp;(2018), PNAS; depression finding from South et al.&nbsp;(2018), JAMA Network Open. Be straight about the limits, because they will ask: the citywide effect was much smaller (about -5.8%), and -29.1% is the below-poverty-line subgroup. Say that out loud. The honest framing is that the effect is concentrated exactly where the blight is, which is the argument, not a caveat.</p>
+<p>If you want one line to close the section: the vacant lot was a decision too. Somebody stopped maintaining it, and somebody could start.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section class="slide level2">
 
 </section></section>
@@ -576,98 +761,9 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section class="slide level2">
+
 
 </section></section>
-<section>
-<section id="group-exercise" class="title-slide slide level1 center">
-<h1><span style="color: teal;"><strong>Group exercise</strong></span></h1>
-
-</section>
-<section id="your-community" class="slide level2">
-<h2><span style="color: teal;"><strong>Your community</strong></span></h2>
-<p>Each group gets one:</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li>A <strong>rural coal town</strong> after the mine closed</li>
-<li>An <strong>urban neighbourhood</strong> with no supermarket</li>
-<li>A recent <strong>immigrant community</strong></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<ul>
-<li>A <strong>tribal reservation</strong></li>
-<li>A <strong>gentrifying neighbourhood</strong></li>
-</ul>
-</div></div>
-<aside class="notes">
-<p>Hand out the one-page scenarios. Five groups; combine if the class is small.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="what-to-do-15-minutes" class="slide level2">
-<h2><span style="color: teal;"><strong>What to do — 15 minutes</strong></span></h2>
-<ol type="1">
-<li><p><strong>Find three things</strong> making people in your community sicker. One must be <em>home</em>, <em>work</em> or <em>neighbourhood</em>.</p></li>
-<li><p><strong>Trace one backwards.</strong> What decision, by whom, put it there?</p></li>
-<li><p><strong>Propose one change.</strong> Say who has the power to make it.</p></li>
-</ol>
-<div class="takeaway">
-<p>Be specific. “Improve access to healthy food” is not an answer. “Move the bus stop” might be.</p>
-</div>
-</section>
-<section id="then-report-back-2-minutes-each" class="slide level2">
-<h2><span style="color: teal;"><strong>Then report back — 2 minutes each</strong></span></h2>
-<p>Tell us:</p>
-<ul>
-<li>Your community, in one sentence</li>
-<li>Your <strong>three</strong> problems</li>
-<li>The <strong>one</strong> change you would make, and <strong>who</strong> would have to make it</li>
-</ul>
-<div class="ask">
-<p>Everyone else: listen for a problem that appears in <strong>more than one</strong> community. Those are the structural ones.</p>
-</div>
-<aside class="notes">
-<p>The cross-scenario pattern is the payoff. Housing cost, transport and job insecurity should appear in nearly all five — which is the argument of both lectures, arrived at by the students rather than by me.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="where-this-goes-next" class="slide level2">
-<h2><span style="color: teal;"><strong>Where this goes next</strong></span></h2>
-<ul>
-<li><strong>Tuesday 8 Sept:</strong> Quiz 1, then <strong>theories and frameworks</strong></li>
-<li>Groups formed, topics assigned, peer pairings announced</li>
-<li><strong>Read:</strong> Chapter 4, sections on determinants</li>
-<li><strong>Assignment 1 due Friday 11 September</strong>, midnight</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="now-into-your-groups" class="title-slide slide level1 center">
-<h1><span style="color: teal;"><strong>Now: into your groups</strong></span></h1>
-
-
-</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

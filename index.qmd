@@ -83,6 +83,33 @@ PAL <- c(low = "#7F1D1D", high = "#8FBF92")
 .term { color: teal; font-weight: bold; }
 .tight ul { font-size: 92%; }
 .reveal figcaption { font-size: 70%; }
+
+/* photo credit: small, grey, right-aligned under an image */
+.credit {
+  font-size: 55%;
+  color: grey;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* --- demand-control 2x2 (Karasek) --- */
+.dc-wrap { display: grid; grid-template-columns: 1.1em 1fr; gap: 6px; margin: 6px 0; }
+.dc-ylab {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  text-align: center; font-size: 0.62em; color: #555; align-self: center;
+}
+.dc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dc-cell { padding: 8px 10px; border: 2px solid #ccc; border-radius: 3px; }
+.dc-cell p { margin: 0 0 2px 0; }
+.dc-cell strong { font-size: 0.92em; }
+.dc-sub  { font-style: italic; font-size: 0.6em; color: #666; }
+.dc-note { font-size: 0.66em; line-height: 1.25; color: #444; }
+/* the one that matters: dark fill, so it also reads in greyscale */
+.dc-strain { background: #7F1D1D; border-color: #7F1D1D; color: #fff; }
+.dc-strain .dc-sub, .dc-strain .dc-note { color: #f0dede; }
+.dc-easy   { background: #8FBF92; border-color: #8FBF92; }
+.dc-mid    { background: #f4f4f4; }
+.dc-xlab { text-align: center; font-size: 0.62em; color: #555; margin-top: 2px; }
 </style>
 ```
 
@@ -90,40 +117,41 @@ PAL <- c(low = "#7F1D1D", high = "#8FBF92")
 
 ## [**Last class, in one slide**]{style="color: teal;"}
 
-::: {.ask}
+::: ask
 **Without looking at your notes:** what does it mean that health is a *staircase* and not a *cliff*?
 
 Turn to your neighbour. Thirty seconds.
 :::
 
-::: {.notes}
+::: notes
 Retrieval practice, not review. Take two answers, correct gently, move on. Target answer: health improves at every step up, so it is not just a poverty problem.
 :::
 
 ------------------------------------------------------------------------
 
-## [**Today**]{style="color: teal;"}
+## [**This lecture**]{style="color: teal;"}
 
 Advantage is distributed unevenly, and the distribution has a history.
 
-**Today: where you actually feel it.**
-
-::: columns
+::::::: columns
 ::: {.column width="25%"}
 ### Home
 :::
+
 ::: {.column width="25%"}
 ### Work
 :::
+
 ::: {.column width="25%"}
 ### Neighbourhood
 :::
+
 ::: {.column width="25%"}
 ### Policy
 :::
-:::
+:::::::
 
-Then: **how you would study a real community** --- and a group exercise doing it.
+H**ow you would study a real community**?
 
 ------------------------------------------------------------------------
 
@@ -133,16 +161,12 @@ Then: **how you would study a real community** --- and a group exercise doing it
 
 ## [**Housing does three separate things**]{style="color: teal;"}
 
-- **What it is made of** --- lead, mould, pests, cold
-- **What it costs you** --- rent takes the money that would have been food or a co-pay
-- **Whether you get to stay** --- three moves in a year: new school, lost doctor, no sleep
+-   **What it is made of** --- lead, mould, pests, cold
+-   **What it costs you** --- rent takes the money that would have been food or a co-pay
+-   **Whether you get to stay** --- three moves in a year: new school, lost doctor, no sleep
 
-::: {.takeaway}
+::: takeaway
 Only the first is about the building. The other two are **money** and **stability**.
-:::
-
-::: {.notes}
-Students default to "bad housing = mould". Push them to the second and third, which do more damage and are less visible.
 :::
 
 ------------------------------------------------------------------------
@@ -155,25 +179,100 @@ Lead paint was legal in US homes until **1978** --- and is still in those walls.
 
 Old housing is concentrated in poor neighbourhoods. Lead damages the developing brain, and **the damage does not reverse**.
 
-::: {.notes}
-The cleanest single illustration of the whole course: a 1978 regulation, a 2026 child, and a mechanism you can draw on the board.
+------------------------------------------------------------------------
+
+## [**Where the lead actually is**]{style="color: pink;"}
+
+```{r lead-by-year-built}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 3.9
+
+lead <- data.frame(
+  era = factor(c("Before 1940", "1940-1959", "1960-1977", "After 1978"),
+               levels = c("Before 1940", "1940-1959", "1960-1977", "After 1978")),
+  pct = c(87, 69, 24, 0)
+)
+# green = the regulation working; dark red = the stock it never reached
+lead$band <- factor(ifelse(lead$era == "After 1978", "banned", "pre-ban"))
+
+ggplot(lead, aes(era, pct, fill = band)) +
+  geom_col(width = 0.62) +
+  geom_text(aes(label = ifelse(pct == 0, "~0%", paste0(pct, "%"))),
+            vjust = -0.45, size = 5.5, fontface = "bold") +
+  scale_fill_manual(values = c("pre-ban" = unname(PAL["low"]),
+                               "banned"  = unname(PAL["high"]))) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 25)) +
+  labs(x = "Year the home was built", y = "% with lead-based paint",
+       title = "Lead paint is a function of the building's age",
+       caption = "EPA / HUD national survey estimates") +
+  theme(legend.position = "none", panel.grid.major.x = element_blank())
+```
+
+::: takeaway
+Old housing is not scattered at random. **It is where the D grades were.**
 :::
 
 ------------------------------------------------------------------------
 
 ## [**And the cost side**]{style="color: teal;"}
 
-::: {.highlight-box}
+::: highlight-box
 Paying more than **30%** of income on rent = **cost-burdened**. Above 50% = **severely** cost-burdened.
 :::
 
-::: {.ask}
-**Quick one:** rent goes up $200 a month, income doesn't. What comes out of the budget first?
+------------------------------------------------------------------------
+
+## [**Who pays too much**]{style="color: teal;"}
+
+```{r cost-burden-gradient}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 3.9
+
+# NOTE: the $45,000-74,999 band is omitted -- add it from the JCHS report
+# if you want the unbroken gradient.
+cb <- data.frame(
+  inc = factor(c("Under $30,000", "$30,000-44,999", "Over $75,000"),
+               levels = c("Under $30,000", "$30,000-44,999", "Over $75,000")),
+  pct = c(83, 72, 14)
+)
+
+ggplot(cb, aes(inc, pct, fill = inc)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(pct, "%")), vjust = -0.45,
+            size = 6, fontface = "bold") +
+  scale_fill_manual(values = c("Under $30,000"  = "#7F1D1D",
+                               "$30,000-44,999" = "#B87A7A",
+                               "Over $75,000"   = "#8FBF92")) +
+  scale_y_continuous(limits = c(0, 95), breaks = seq(0, 75, 25)) +
+  labs(x = "Annual household income", y = "% of renters cost-burdened",
+       title = "Renters spending 30%+ of income on housing, 2024",
+       caption = "Harvard Joint Center for Housing Studies, America's Rental Housing (ACS tabulations)") +
+  theme(legend.position = "none", panel.grid.major.x = element_blank())
+```
+
+::: takeaway
+**The staircase again --- this time in rent.** Not a cliff at the poverty line.
+:::
+
+------------------------------------------------------------------------
+
+## [**So what gives?**]{style="color: teal;"}
+
+::: ask
+**Quick one:** rent goes up \$200 a month, income doesn't. What comes out of the budget first?
 
 Name three things. Which of them are health?
 :::
 
-::: {.notes}
+::: notes
 Expected: groceries, prescriptions, the dentist, the car repair that gets you to work, heating. All of them are health. This makes housing cost a health variable, not a finance variable.
 :::
 
@@ -185,7 +284,7 @@ Expected: groceries, prescriptions, the dentist, the car repair that gets you to
 
 ## [**The wrong question and the right one**]{style="color: teal;"}
 
-::: {.highlight-box}
+::: highlight-box
 Wrong question: **do you have a job?**
 
 Right question: **what does the job do to you?**
@@ -197,11 +296,11 @@ Two people both "employed" can have completely different health prospects.
 
 ## [**Three ways a job reaches your body**]{style="color: teal;"}
 
-::: columns
+:::::: columns
 ::: {.column width="33%"}
 **The body takes it**
 
-<span style="font-size:0.78em">Lifting, repetition, chemicals, heat</span>
+[Lifting, repetition, chemicals, heat]{style="font-size:0.78em"}
 
 ![](heavyboxes.png){width="50%"}
 :::
@@ -209,7 +308,7 @@ Two people both "employed" can have completely different health prospects.
 ::: {.column width="33%"}
 **The mind takes it**
 
-<span style="font-size:0.78em">High demand, low control, unpredictable hours</span>
+[High demand, low control, unpredictable hours]{style="font-size:0.78em"}
 
 ![](mother.png){width="50%"}
 :::
@@ -217,14 +316,70 @@ Two people both "employed" can have completely different health prospects.
 ::: {.column width="33%"}
 **It follows you home**
 
-<span style="font-size:0.78em">Pesticides, solvents, dust on your clothes</span>
+[Pesticides, solvents, dust on your clothes]{style="font-size:0.78em"}
 
 ![](spray.png){width="50%"}
 :::
+::::::
+
+::: takeaway
+The middle one is the surprise: **high demand + low control** predicts heart disease. Being busy is not the problem. Being busy with no say is.
 :::
 
-::: {.takeaway}
-The middle one is the surprise: **high demand + low control** predicts heart disease. Being busy is not the problem. Being busy with no say is.
+------------------------------------------------------------------------
+
+## [**The middle one, drawn**]{style="color: teal;"}
+
+::::::::: dc-wrap
+::: dc-ylab
+← low control    high control →
+:::
+
+::::::: dc-grid
+::: {.dc-cell .dc-mid}
+**Passive**
+
+[Low demand, low control]{.dc-sub}
+
+[Night watch, some clerical work. Skills erode; disengagement.]{.dc-note}
+:::
+
+::: {.dc-cell .dc-easy}
+**Low strain**
+
+[Low demand, high control]{.dc-sub}
+
+[Self-paced, autonomous. The healthiest quadrant.]{.dc-note}
+:::
+
+::: {.dc-cell .dc-strain}
+**High strain**
+
+[High demand, low control]{.dc-sub}
+
+[Line work, call centre, care aide, warehouse pick rates. Highest cardiovascular risk.]{.dc-note}
+:::
+
+::: {.dc-cell .dc-mid}
+**Active**
+
+[High demand, high control]{.dc-sub}
+
+[Surgeon, senior manager. Demanding --- but not, on its own, damaging.]{.dc-note}
+:::
+:::::::
+:::::::::
+
+::: dc-xlab
+← low demand      high demand →
+:::
+
+::: takeaway
+Two people can work equally hard. Only one of them has a say in how.
+:::
+
+::: notes
+Karasek's demand-control model (1979). The quadrant students always want to argue about is Active: yes, the surgeon's job is brutal, and no, it does not carry the same risk, because the surgeon decides the order of the day. Ask them which quadrant the jobs they have actually held fall into --- it is usually the dark one, and that lands better than any statistic.
 :::
 
 ------------------------------------------------------------------------
@@ -263,7 +418,7 @@ ggplot(bens, aes(benefit, pct, fill = earners)) +
   theme(panel.grid.major.x = element_blank())
 ```
 
-::: {.notes}
+::: notes
 "Access" means the employer offers it, not that the worker takes it up --- so these bars are the optimistic version.
 :::
 
@@ -271,17 +426,17 @@ ggplot(bens, aes(benefit, pct, fill = earners)) +
 
 ## [**Why paid sick leave is a health policy**]{style="color: teal;"}
 
-::: {.highlight-box}
+::: highlight-box
 **41%** of the lowest-paid workers can take a paid sick day. **96%** of the highest-paid can.
 :::
 
 So the person handling your food, minding your child, or turning your grandmother in bed is the one who **cannot afford to stay home sick**.
 
-::: {.takeaway}
+::: takeaway
 Their working conditions are **your** exposure. This is why we study populations, not individuals.
 :::
 
-::: {.notes}
+::: notes
 This is the slide that makes the population-level argument land for students who came in thinking public health is about personal responsibility.
 :::
 
@@ -293,15 +448,15 @@ Independent contractors: **7.4%** of US employment --- 11.9 million people.
 
 Health insurance from *any* source:
 
-- Traditional employees --- **85%**
-- Independent contractors --- **74%**
-- Temp agency workers --- **61%**
+-   Traditional employees --- **85%**
+-   Independent contractors --- **74%**
+-   Temp agency workers --- **61%**
 
-::: {.takeaway}
+::: takeaway
 No employer means no employer-sponsored anything: no sick leave, no workers' comp, no unemployment insurance. **Insecure work, insecure health.**
 :::
 
-::: {.notes}
+::: notes
 Source: BLS Contingent and Alternative Employment Arrangements, July 2023 (released Nov 2024). Note honestly that BLS does not publish an employer-coverage figure for contractors, because by definition there is no employer.
 :::
 
@@ -315,7 +470,7 @@ Source: BLS Contingent and Alternative Employment Arrangements, July 2023 (relea
 
 ![](built-environment.png){fig-align="center" width="55%"}
 
-::: {.notes}
+::: notes
 Ask what they can see: sidewalks, crossings, lighting, shade, benches, whether the shop is walkable. The point is that "exercise" is a design outcome, not only a willpower outcome.
 :::
 
@@ -323,19 +478,19 @@ Ask what they can see: sidewalks, crossings, lighting, shade, benches, whether t
 
 ## [**And what is put near you**]{style="color: teal;"}
 
-::: {.highlight-box}
+::: highlight-box
 [**Environmental justice**]{.term}: pollution, heat and industrial hazards are not spread evenly --- they concentrate in low-income neighbourhoods and neighbourhoods of colour.
 :::
 
 Remember last class: **cheap land is where the highway goes.**
 
-::: {.ask}
+::: ask
 **Which came first** --- the polluting plant, or the poor neighbourhood around it?
 
 There is evidence for both. Why does the answer matter for policy?
 :::
 
-::: {.notes}
+::: notes
 Genuinely contested in the literature (siting vs. subsequent demographic change). Use it to show that "which came first" changes whether the remedy is siting rules or cleanup and relocation.
 :::
 
@@ -343,13 +498,117 @@ Genuinely contested in the literature (siting vs. subsequent demographic change)
 
 ## [**What it does**]{style="color: pink;"}
 
-- **Lungs** --- asthma, COPD; children worst affected
-- **Heart** --- fine particulate exposure raises cardiovascular risk
-- **Heat** --- less shade, more asphalt; heatwave deaths cluster in the same blocks
-- **Mind** --- noise, no green space, and knowing this was allowed to happen here
+-   **Lungs** --- asthma, COPD; children worst affected
+-   **Heart** --- fine particulate exposure raises cardiovascular risk
+-   **Heat** --- less shade, more asphalt; heatwave deaths cluster in the same blocks
+-   **Mind** --- noise, no green space, and knowing this was allowed to happen here
 
-::: {.takeaway}
+::: takeaway
 This is the redlining map again, wearing a different coat.
+:::
+
+------------------------------------------------------------------------
+
+## [**And what happens on the street**]{style="color: pink;"}
+
+![](street-markers.jpg){fig-align="center" width="76%"}
+
+::: credit
+Photo: Associated Press
+:::
+
+::: notes
+SAY SOMETHING BEFORE THIS SLIDE. One sentence is enough: "The next few slides are about firearm injury. Some of you will have lost someone. Step out if you need to." Then move at a normal pace -- do not linger on the image, and do not editorialise over it. The photo is here to be counted, not felt.
+
+Every yellow marker is a piece of evidence. Do not name the city; the point is not this street.
+:::
+
+------------------------------------------------------------------------
+
+## [**The wrong question, one more time**]{style="color: teal;"}
+
+::: highlight-box
+Wrong question: **what is wrong with the people on that street?**
+
+Right question: **why that street?**
+:::
+
+Firearm injury is a leading cause of death for US children and adolescents. It is also, like everything else in this lecture, **unevenly distributed** --- and the unevenness is very fine-grained.
+
+::: notes
+Deliberate echo of the Work section's "wrong question / right question" slide. Students should recognise the move.
+:::
+
+------------------------------------------------------------------------
+
+## [**How fine-grained**]{style="color: teal;"}
+
+::: bignum
+under 5%
+:::
+
+Of street segments and intersections in one large US city accounted for the **majority of its gun violence** --- across 29 years.
+
+::: takeaway
+A problem that concentrates on 5% of streets, and *stays* on those streets for three decades, is a problem about **streets**.
+:::
+
+::: notes
+Braga, Papachristos & Hureau (2010), Boston, 1980-2008. The stability is the surprising part, not the concentration -- the same corners, decade after decade, through a citywide crime drop. That persistence is what makes it look structural rather than incidental. Do not let this slide become a policing conversation; the next slide is the reason.
+:::
+
+------------------------------------------------------------------------
+
+## [**Somebody tested that**]{style="color: teal;"}
+
+A US city had thousands of blighted vacant lots. Researchers took **541** of them, grouped them into 110 clusters, and **randomly assigned** each cluster to:
+
+:::::: columns
+::: {.column width="33%"}
+**Greened**
+
+[Trash cleared, graded, grass and trees planted, low fence]{style="font-size:0.75em"}
+:::
+
+::: {.column width="33%"}
+**Cleaned only**
+
+[Mowed, trash removed, nothing planted]{style="font-size:0.75em"}
+:::
+
+::: {.column width="33%"}
+**Nothing**
+
+[Left as they were]{style="font-size:0.75em"}
+:::
+::::::
+
+Then they counted police-recorded shootings around each lot for two years.
+
+::: notes
+Flag the design out loud: this is a randomised controlled trial of a *place*, not of a drug and not of a person. Students have never seen one. It matters for the next section -- this is what a population-scale answer looks like when somebody actually ran it.
+:::
+
+------------------------------------------------------------------------
+
+## [**What grass did**]{style="color: teal;"}
+
+::: bignum
+−29%
+:::
+
+Gun violence around the treated lots, in neighbourhoods **below the poverty line**.
+
+Nearby residents also reported feeling less depressed --- by more than **68%** in those same neighbourhoods.
+
+::: takeaway
+The intervention was grass, a fence, and a mower. **No policing. No programme. Nobody's behaviour was corrected.**
+:::
+
+::: notes
+Branas et al. (2018), PNAS; depression finding from South et al. (2018), JAMA Network Open. Be straight about the limits, because they will ask: the citywide effect was much smaller (about -5.8%), and -29.1% is the below-poverty-line subgroup. Say that out loud. The honest framing is that the effect is concentrated exactly where the blight is, which is the argument, not a caveat.
+
+If you want one line to close the section: the vacant lot was a decision too. Somebody stopped maintaining it, and somebody could start.
 :::
 
 ------------------------------------------------------------------------
@@ -362,26 +621,26 @@ This is the redlining map again, wearing a different coat.
 
 Home, work and neighbourhood are all **downstream of decisions somebody made**.
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 **Pushes health up**
 
-- Income support (EITC)
-- Medicaid expansion
-- Paid leave laws
-- Lead abatement funding
+-   Income support (EITC)
+-   Medicaid expansion
+-   Paid leave laws
+-   Lead abatement funding
 :::
 
 ::: {.column width="50%"}
 **Pushes health down**
 
-- Zoning that blocks affordable housing
-- Mass incarceration
-- Weak housing-code enforcement
+-   Zoning that blocks affordable housing
+-   Mass incarceration
+-   Weak housing-code enforcement
 :::
-:::
+:::::
 
-::: {.takeaway}
+::: takeaway
 None of these is called a health policy. All of them are.
 :::
 
@@ -391,13 +650,13 @@ None of these is called a health policy. All of them are.
 
 In 2014, some states expanded Medicaid and some did not. Same country, same decade.
 
-::: {.bignum}
+::: bignum
 9.4%
 :::
 
 Reduction in annual mortality among low-income adults aged 55--64 in expansion states.
 
-::: {.notes}
+::: notes
 Miller, Johnson & Wherry (2021), Quarterly Journal of Economics. Be precise about the population: low-income adults aged 55--64, not everybody. Rising to 11.9% by the third year. Roughly 15,600 deaths would have been averted had all states expanded.
 :::
 
@@ -435,7 +694,7 @@ ggplot(unins, aes(st, pct, fill = st)) +
 
 Expansion also cut medical debt sent to collections by about **42%** (Hu et al. 2018).
 
-::: {.notes}
+::: notes
 Flag the honest caveat: the uninsured bars are a cross-section, not a causal estimate --- expansion and non-expansion states differ in many ways. The mortality and debt figures are the causal ones.
 :::
 
@@ -447,15 +706,15 @@ Flag the honest caveat: the uninsured bars are a cross-section, not a causal est
 
 ## [**Two different jobs**]{style="color: teal;"}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ### Community assessment
 
 **One place, in depth.**
 
-- You go there; you talk to people
-- Assets as well as problems
-- Ends with: a plan somebody can act on
+-   You go there; you talk to people
+-   Assets as well as problems
+-   Ends with: a plan somebody can act on
 :::
 
 ::: {.column width="50%"}
@@ -463,13 +722,13 @@ Flag the honest caveat: the uninsured bars are a cross-section, not a causal est
 
 **Many places, from above.**
 
-- Registries, surveys, vital statistics
-- Compare counties, states, countries
-- Ends with: a pattern, and where to look next
+-   Registries, surveys, vital statistics
+-   Compare counties, states, countries
+-   Ends with: a pattern, and where to look next
 :::
-:::
+:::::
 
-::: {.takeaway}
+::: takeaway
 Neither is better. Each is bad at the other's question.
 :::
 
@@ -477,85 +736,14 @@ Neither is better. Each is bad at the other's question.
 
 ## [**Same city, two questions**]{style="color: teal;"}
 
-- **Population:** *Which PA counties have the highest diabetes rates?* → surveillance data, a map, a ranking
+-   **Population:** *Which PA counties have the highest diabetes rates?* → surveillance data, a map, a ranking
 
-- **Community:** *Why this neighbourhood, and what already exists here that could help?* → walk the streets, count the shops, ask the clinic
+-   **Community:** *Why this neighbourhood, and what already exists here that could help?* → walk the streets, count the shops, ask the clinic
 
-::: {.highlight-box}
+::: highlight-box
 **Your individual paper is a community assessment** --- of your own hometown. That is why it cannot be written from data alone.
 :::
 
-::: {.notes}
+::: notes
 Deliberate hook to the individual paper due 24 November. Point out that the observation part is what earns the marks.
 :::
-
-------------------------------------------------------------------------
-
-# [**Group exercise**]{style="color: teal;"}
-
-------------------------------------------------------------------------
-
-## [**Your community**]{style="color: teal;"}
-
-Each group gets one:
-
-::: columns
-::: {.column width="50%"}
-- A **rural coal town** after the mine closed
-- An **urban neighbourhood** with no supermarket
-- A recent **immigrant community**
-:::
-::: {.column width="50%"}
-- A **tribal reservation**
-- A **gentrifying neighbourhood**
-:::
-:::
-
-::: {.notes}
-Hand out the one-page scenarios. Five groups; combine if the class is small.
-:::
-
-------------------------------------------------------------------------
-
-## [**What to do --- 15 minutes**]{style="color: teal;"}
-
-1. **Find three things** making people in your community sicker. One must be *home*, *work* or *neighbourhood*.
-
-2. **Trace one backwards.** What decision, by whom, put it there?
-
-3. **Propose one change.** Say who has the power to make it.
-
-::: {.takeaway}
-Be specific. "Improve access to healthy food" is not an answer. "Move the bus stop" might be.
-:::
-
-------------------------------------------------------------------------
-
-## [**Then report back --- 2 minutes each**]{style="color: teal;"}
-
-Tell us:
-
-- Your community, in one sentence
-- Your **three** problems
-- The **one** change you would make, and **who** would have to make it
-
-::: {.ask}
-Everyone else: listen for a problem that appears in **more than one** community. Those are the structural ones.
-:::
-
-::: {.notes}
-The cross-scenario pattern is the payoff. Housing cost, transport and job insecurity should appear in nearly all five --- which is the argument of both lectures, arrived at by the students rather than by me.
-:::
-
-------------------------------------------------------------------------
-
-## [**Where this goes next**]{style="color: teal;"}
-
-- **Tuesday 8 Sept:** Quiz 1, then **theories and frameworks**
-- Groups formed, topics assigned, peer pairings announced
-- **Read:** Chapter 4, sections on determinants
-- **Assignment 1 due Friday 11 September**, midnight
-
-------------------------------------------------------------------------
-
-# [**Now: into your groups**]{style="color: teal;"}
